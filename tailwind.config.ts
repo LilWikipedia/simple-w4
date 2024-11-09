@@ -25,16 +25,20 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0066FF",
-          foreground: "#FFFFFF",
+          DEFAULT: "#6366f1",
+          foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#F4F7FF",
-          foreground: "#0066FF",
+          DEFAULT: "#f0f9ff",
+          foreground: "#0369a1",
         },
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-fresh': 'linear-gradient(to right, #6366f1, #3b82f6)',
       },
     },
   },

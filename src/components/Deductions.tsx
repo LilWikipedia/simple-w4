@@ -3,6 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface DeductionsData {
+  filingStatus: string;
+  multipleJobs: boolean;
+  claimDependents: boolean;
   otherIncome: string;
   deductions: string;
   extraWithholding: string;
@@ -16,9 +19,10 @@ interface Props {
 }
 
 const Deductions = ({ data, onChange, onNext, onBack }: Props) => {
-  const handleChange = (field: keyof DeductionsData) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({ ...data, [field]: e.target.value });
-  };
+  const handleChange = (field: keyof Pick<DeductionsData, 'otherIncome' | 'deductions' | 'extraWithholding'>) => 
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange({ ...data, [field]: e.target.value });
+    };
 
   return (
     <div className="form-step">
@@ -31,6 +35,7 @@ const Deductions = ({ data, onChange, onNext, onBack }: Props) => {
             onChange={handleChange("otherIncome")}
             placeholder="Enter amount"
             type="number"
+            className="bg-white/50 backdrop-blur-sm"
           />
           <p className="form-helper">Enter other income you expect this year that won't have withholding</p>
         </div>
@@ -43,6 +48,7 @@ const Deductions = ({ data, onChange, onNext, onBack }: Props) => {
             onChange={handleChange("deductions")}
             placeholder="Enter amount"
             type="number"
+            className="bg-white/50 backdrop-blur-sm"
           />
           <p className="form-helper">Enter estimated deductions other than the standard deduction</p>
         </div>
@@ -55,13 +61,14 @@ const Deductions = ({ data, onChange, onNext, onBack }: Props) => {
             onChange={handleChange("extraWithholding")}
             placeholder="Enter amount"
             type="number"
+            className="bg-white/50 backdrop-blur-sm"
           />
           <p className="form-helper">Enter any additional tax you want withheld from each paycheck</p>
         </div>
 
         <div className="flex justify-between">
-          <Button variant="outline" onClick={onBack}>Back</Button>
-          <Button onClick={onNext}>Continue</Button>
+          <Button variant="outline" onClick={onBack} className="bg-white/50">Back</Button>
+          <Button onClick={onNext} className="bg-gradient-fresh hover:opacity-90">Continue</Button>
         </div>
       </div>
     </div>
